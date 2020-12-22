@@ -13,21 +13,23 @@
  *     }
  * }
  */
+
 class Solution {
-    public boolean isBalanced(TreeNode root) {
-        if(root==null){ return true;}
-        while(root!=null){
-            if(Math.abs(getHeight(root.left)-getHeight(root.right))>1){
-                return false;
-            }
-        }
-        return isBalanced(root.left) && isBalanced(root.right);
-    }
-    
-    
-    public int getHeight(TreeNode root){
+    public static int height(TreeNode root){
         if(root==null){
-            return -1;}
-        return 1 + Math.max(getHeight(root.left), getHeight(root.right));   
+            return 0;
+        }
+        int leftheight=height(root.left);
+        int rightheight=height(root.right);
+        return 1+Math.max(leftheight,rightheight);
+    }
+    public boolean isBalanced(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+        if(Math.abs(height(root.left)-height(root.right))>1){
+            return false;
+        }
+        return isBalanced(root.left)&&isBalanced(root.right);
     }
 }
