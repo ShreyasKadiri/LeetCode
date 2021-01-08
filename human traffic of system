@@ -1,0 +1,9 @@
+with dd as (
+select ,id-row_number() over(order by id) seq_group
+from stadium
+where people>=100)
+, tbl as (select id,visit_Date,people,count() over (partition by seq_group) count_group from dd
+)
+select id,visit_Date,people
+from tbl
+where count_group>=3
