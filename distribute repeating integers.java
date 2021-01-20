@@ -1,39 +1,48 @@
 class Solution {
     public boolean canDistribute(int[] nums, int[] quantity) {
-        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
-        for(int i=0; i<nums.length; i++){
-            map.put(nums[i], map.getOrDefault(nums[i],0)+1);
+        Map<Integer, Integer> counts = new HashMap<>();
+        for (int num : nums) {
+            counts.put(num, counts.getOrDefault(num, 0) + 1);
         }
-       
-        int distances[] = new int[nums.length];
-        int index=0;
-        for(int frequency : map.values(){
-            distance[index++] = frequency;
-        }
-            Arrays.sort(quantity);
-            return backTrack(distance, quantity, quantity.length-1);
-    }
-            
-            
-    public boolean backTrack(int distance[], int quantity, int j){
-     if(j==-1){
-         return true;
-     }   
         
-        HashSet<Integer> set = new HashSet<Integer>();
-        for(int i=0; i<distance.length; i++){
-            if(distance[i] > =quantity[j] && set.add(distance[i])){
-                distance[i]-=quantity[j];
-                if(backTrack(distance, quantity, j-1))
-                    return true;
-            }
-            distance[i]+=quantity[j];
+        int idx = 0;
+        int[] arrCounts = new int[counts.size()];
+        for (var key : counts.keySet()) {
+            arrCounts[idx++] = counts.get(key);
+        }
+        return solve(arrCounts, quantity);
+    }
+    
+    private boolean solve(int[] counts, int[] quantity) {
+        Arrays.sort(counts);
+        Arrays.sort(quantity);
+        reverse(quantity);
+        return solve(counts, quantity, 0);
+    }
+    
+    private void reverse(int[] arr) {
+        for (int i = 0; i + i < arr.length; i++) {
+            int tmp = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = tmp;
         }
     }
-        return false;
-}
+    
+    private boolean solve(int[] counts, int[] quantity, int idx) {
+        if (idx >= quantity.length) {
+            return true;
+        }
+        
+        for (int i = 0; i < counts.length; i++) {
+            if (counts[i] >= quantity[idx]) {
+                counts[i] -= quantity[idx];
+                if (solve(counts, quantity, idx + 1)) {
+                    return true;
+                }
+                counts[i] += quantity[idx];
             }
-
-/*
-https://leetcode.com/problems/distribute-repeating-integers/discuss/935522/Step-by-step-optimization-more-than-10-methods
-*/
+        }
+        
+        return false;
+    }
+}
