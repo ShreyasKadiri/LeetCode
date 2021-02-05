@@ -1,0 +1,6 @@
+select t.Request_at as Day,
+       round(sum(if(t.Status <> 'completed', 1, 0))/sum(1), 2) as 'Cancellation Rate'
+from Trips as t
+inner join Users as u on t.Client_id = u.Users_id and u.Banned <> 'Yes'
+where t.Request_at >= '2013-10-01' and t.Request_at <='2013-10-03'
+group by t.Request_at;
