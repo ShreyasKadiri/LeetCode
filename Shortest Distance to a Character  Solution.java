@@ -1,29 +1,47 @@
 class Solution {
     public int[] shortestToChar(String s, char c) {
-        List<Integer> shortestDistance=new ArrayList<Integer>();
-        
-        shortestDistance.add(-10000);
-        for(int i=0; i<s.length(); i++){
-            if(s.charAt(i)==c){
-                shortestDistance.add(i);
+
+        int[] leftDistance = new int[ s.length()];
+        int[] rightDistance =new int[ s.length()];
+
+        Arrays.fill(leftDistance, Integer.MAX_VALUE);
+        Arrays.fill(rightDistance, Integer.MAX_VALUE);
+
+        int runningDistance = Integer.MAX_VALUE;
+
+        //left to right direction
+        for(int i=0; i< s.length(); i++){
+            if(s.charAt(i) == c){
+                runningDistance = 0;
+                rightDistance[i] = runningDistance;
+            } else{
+
+                if(runningDistance != Integer.MAX_VALUE) {
+                    runningDistance++;
+                    rightDistance[i] = runningDistance;
+                }
             }
         }
-        shortestDistance.add(Integer.MAX_VALUE);
-        
-        int[] result=new int[s.length()];
-        
-        int firstOccurence=shortestDistance.get(0);
-        int secondOccurence=shortestDistance.get(1);
-        
-        int j=2;
-        for(int i=0; i<s.length(); i++){
-            if(s.charAt(i)!=c){
-                result[i]=Math.min(i-firstOccurence,secondOccurence-i);
+        runningDistance = Integer.MAX_VALUE;
+
+        // right to left direction
+
+        for(int i= s.length()-1; i>=0; i--){
+            if(s.charAt(i) == c){
+                runningDistance= 0;
+                leftDistance[i] = runningDistance;
+            } else{
+                if(runningDistance != Integer.MAX_VALUE) {
+                    runningDistance++;
+                    leftDistance[i] = runningDistance;
+                }
             }
-            else{
-                firstOccurence=secondOccurence;
-                secondOccurence=shortestDistance.get(j++);
-            }
+        }
+
+        int[] result = new int[ s.length()];
+
+        for(int i=0; i< s.length(); i++){
+            result[i] = Math.min(rightDistance[i], leftDistance[i]);
         }
         return result;
     }
