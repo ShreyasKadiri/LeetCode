@@ -1,7 +1,7 @@
 class Solution {
     public boolean rotateString(String A, String B) {
-        String concatenatedString="";
+        String concatenatedString = "";
         concatenatedString+=A+A;
-        return concatenatedString.contains(B);
-    }
+        return concatenatedString.contains(B) && A.length()==B.length();
+     }
 }
