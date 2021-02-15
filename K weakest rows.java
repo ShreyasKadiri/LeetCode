@@ -1,24 +1,32 @@
 class Solution {
     public int[] kWeakestRows(int[][] mat, int k) {
-        int weakestRows[] = new int[mat.length];
-    PriorityQueue<int[]> maxHeap = new PriorityQueue<int[]>( (a,b) -> a[0]!=b[0] ? b[0] -a[0] : b[1] -a[1]);
+        int sortedRows[] = new int[k];
+        //HashMap to store row number and corresponding number of ones
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         for(int i=0; i<mat.length; i++){
-            int soldiers=0;
+            int count=0;
             for(int j=0; j<mat[0].length; j++){
-                if(mat[i][j] == 1){
-                    soldiers+=1;
-                }else{
-                    break;
+                if(mat[i][j]==1){
+                    count+=1;
                 }
-                maxHeap.offer(new int[]{soldiers,i});
             }
-            while(maxHeap.size() > k){
-                maxHeap.poll();
-            }
-         while(k>0){
-             weakestRows[--k]=maxHeap.poll()[1];
-         }   
+            map.put(i, count);
         }
-        return weakestRows;
+      
+    //MinHeap to keep track of rows with minimum number of ones
+PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a, b) -> a.getValue().equals(b.getValue()) ? a.getKey() - (b.getKey()) : a.getValue() - b.getValue() );
+        
+//Insert all elements from hashmap to minHeap
+for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+    minHeap.offer(entry);
+}
+        
+//Populating the sortedRows array with respective count of ones
+for(int i=0; i<k; i++){
+    Map.Entry<Integer,Integer> entry = minHeap.poll();
+    sortedRows[i] =  entry.getKey();
+}
+        
+        return sortedRows;
     }
 }
