@@ -1,6 +1,5 @@
 class Solution {
     public int brokenCalc(int X, int Y) {
-        int minimumOperations =0;
         if(X==Y){
             return 0;
         }
