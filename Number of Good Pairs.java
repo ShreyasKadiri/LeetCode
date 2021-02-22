@@ -13,6 +13,20 @@ class Solution {
 }
 
 
+//HashMap
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<Integer,Integer>();
+        int count=0;
+        for(int i=0; i<nums.length; i++){
+             count+=map.getOrDefault(nums[i], 0);
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);   
+        }
+        return count;
+    }
+}
+
+
 
 //Lineaar Approach
 class Solution {
