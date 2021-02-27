@@ -15,3 +15,18 @@ class Solution {
         return gap;
     }
 }
+
+
+//Bitwise
+class Solution {
+    public int binaryGap(int n) {
+      int maximumGap = 0;
+      for(int gap=-32; n>0;  n/=2, gap++){
+          if(n%2 == 1){
+            maximumGap = Math.max(maximumGap, gap);
+              gap = 0;
+          }
+      }
+        return maximumGap;
+    }
+}
