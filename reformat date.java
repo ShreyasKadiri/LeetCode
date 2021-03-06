@@ -17,13 +17,17 @@ map.put("Sep", "09"); map.put("Oct", "10"); map.put("Nov", "11"); map.put("Dec",
         //Extract current date
         StringBuilder currentDate = new StringBuilder("");
         for(char c : date.toCharArray()){
-            if(c == 's' || c=='t' || c=='r' || c=='d' || c=='h'){
+            if(c == 's' || c=='t' || c=='r' || c=='d' || c=='h' || c=='n'){
                 continue;
             }else{
                 currentDate.append(c);
             }
         }
         
+        if(currentDate.length() == 1){
+            //append o at the beginning
+            currentDate.insert(0, "0");
+        }
         //Returning the final result
         format = year + "-" + currentMonth + "-" + currentDate.toString(); 
         return format;
