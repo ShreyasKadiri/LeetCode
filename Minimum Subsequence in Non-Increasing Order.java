@@ -10,7 +10,7 @@ class Solution {
         
         for(int i=nums.length-1; i>=0; i--){
             currentSum+=nums[i];
-            sum-=currentSum;
+            sum-=nums[i];
             result.add(nums[i]);
             if(currentSum > sum){
                 return result;
