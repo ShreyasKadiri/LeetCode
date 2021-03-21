@@ -1,9 +1,9 @@
 class Solution {
     public boolean reorderedPowerOf2(int N) {
-        int[] digits = freqCount(N);
-        for(int i=0; i<31; i++){
+        int[] inputDigitFreq = freqCount(N);
+        for(int i=0;i<31;i++){
             int powerOf2 = (int)Math.pow(2, i);
-            int[] powerOf2Count = frequencyCount(powerOf2);
+            int[] powerOf2FreqCount = freqCount(powerOf2);
             if(compareArray(inputDigitFreq, powerOf2FreqCount)){
                 return true;
             }
@@ -13,6 +13,7 @@ class Solution {
     }
 
     private boolean compareArray(int[] freqCount1,int[] freqCount2){
+
         for(int i=0;i<10;i++){
             if(freqCount1[i]!= freqCount2[i]){
                 return false;
