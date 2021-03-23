@@ -14,3 +14,19 @@ class Solution {
         return repeatedElement;
     }
 }
+
+
+
+//O(1)
+class Solution {
+    public int repeatedNTimes(int[] A) {
+        int frequency[] = new int [10000];
+        int repeatedElement = 0;
+        for(int i=0; i<A.length; i++){
+            if(frequency[A[i]]++ == 1){
+                repeatedElement = A[i];
+            }
+        }
+        return repeatedElement;
+    }
+}
