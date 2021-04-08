@@ -15,3 +15,12 @@ class Solution {
         return sb.toString();
     }
 }
+
+
+
+//Regex
+class Solution {
+    public String interpret1(String command) {
+	return command.replaceAll("\\(\\)", "o").replaceAll("\\(al\\)", "al");
+  }
+}
