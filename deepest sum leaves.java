@@ -15,18 +15,18 @@
  */
 
 class Solution {    
-   private int maxLevel = 0;
-    private int sum = 0;
+   private int maximumLevel = 0;
+    private int currentSum = 0;
     
     public int deepestLeavesSum(TreeNode root) {
         if(root == null) {
             return 0;
         }       
         calculateLevelSum(root,0);
-        return sum;
+        return currentSum;
     }
     
-    private void calculateSumAtLevel(TreeNode root,int level){
+    private void calculateLevelSum(TreeNode root,int currentLevel){
        if(root == null) {
            return ;
        }    
@@ -34,10 +34,10 @@ class Solution {
             currentSum = 0;
             maximumLevel = currentLevel;
         }
-        if(level == maxLevel){
+        if(currentLevel == maximumLevel){
             currentSum = currentSum + root.val;
         }
-        calculateLevelSum(root.left,level+1);
-        calculateLevelSum(root.right,level+1);
+        calculateLevelSum(root.left, currentLevel+1);
+        calculateLevelSum(root.right, currentLevel+1);
     }
 }
