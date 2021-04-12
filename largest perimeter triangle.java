@@ -1,21 +1,14 @@
+import java.util.Arrays;
+import java.util.Collections;
 class Solution {
-    public int largestPerimeter(int[] nums) {
-        Arrays.sort(nums);
+    public int largestPerimeter(int[] arr) {
         int perimeter = 0;
+        Integer[] nums = Arrays.stream(arr).boxed().toArray( Integer[]::new);
+         Arrays.sort(nums, Collections.reverseOrder());
         
-        //Reverse the array
-        int t = 0;
-        int i=0;
-        int j = nums.length-1;
-        while(i<=j){
-            t = nums[i];
-            nums[i] = nums[j];
-            nums[j] = t;
-        }
-        
-        for(int k=0; k<nums.length-2; k++){
-            if(nums[k] < nums[k+1] + nums[k+2]){
-                perimeter  = Math.max(perimeter, nums[k] + nums[k+1] + nums[k+2]);
+        for(int i=0; i<nums.length-2; i++){
+            if(nums[i] < nums[i+1] + nums[i+2]){
+                perimeter  = Math.max(perimeter, nums[i] + nums[i+1] + nums[i+2]);
                 break;
             }
         }
