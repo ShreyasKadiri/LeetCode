@@ -1,3 +1,4 @@
+//Sorting O(nlogn)
 class Solution {
     public int minMoves(int[] nums) {
         int minimumMoves = 0;
@@ -9,16 +10,20 @@ class Solution {
     }
 }
 
-
-//O(n)
-class Solution {
-   public int minMoves(int[] nums) {
-       int minimum = Integer.MAX_VALUE;
-       int sum = 0;
-	for (int i=1; i<nums.length; i++) {
-        minimum = Math.min(minimum, nums.length);
-        sum += nums.length;
+//Linear O(n)
+class Solution{
+    public int minMoves(int[] nums) {
+    int minimumMoves = 0;
+    int minimum = nums[0];
+    
+    for (int i=1; i<nums.length; i++){
+        if (nums[i] >= minimum){
+            minimumMoves += nums[i] - minimum;
+        }else{
+            minimumMoves += (minimum - nums[i]) * i;
+            minimum = nums[i];
+        }
     }
-	return Math.abs(sum - nums.length * minimum);
+    return minimumMoves;
     }
 }
