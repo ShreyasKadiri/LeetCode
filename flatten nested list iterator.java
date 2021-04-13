@@ -24,7 +24,7 @@ public class NestedIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        return queue.poll;
+        return queue.poll();
     }
 
     @Override
