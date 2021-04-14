@@ -1,35 +1,39 @@
 class Solution {
     public boolean squareIsWhite(String coordinates) {
-        char c = coordinates.charAt(0);
-         char d = coordinates.charAt(1);
-        
+       
         StringBuilder sb = new StringBuilder("");
-        if(c=='a'){
+        if(coordinates.charAt(0)=='a'){
             sb.append("1");
         }
-         if(c=='b'){
+         if(coordinates.charAt(0)=='b'){
             sb.append("2");
         }
-         if(c=='c'){
+         if(coordinates.charAt(0)=='c'){
             sb.append("3");
         }
-         if(c=='d'){
+         if(coordinates.charAt(0)=='d'){
             sb.append("4");
         }
-         if(c=='e'){
+         if(coordinates.charAt(0)=='e'){
             sb.append("5");
-        } if(c=='f'){
+        } if(coordinates.charAt(0)=='f'){
             sb.append("6");
-        } if(c=='g'){
+        } if(coordinates.charAt(0)=='g'){
             sb.append("7");
         }
-         if(c=='h'){
+         if(coordinates.charAt(0)=='h'){
             sb.append("8");
-        }
-        
-        int val =  Character.getNumericValue(c)+  Character.getNumericValue(d); 
-        
-        
-        return val%2 == 0 ;
+        }   
+       return Character.getNumericValue(coordinates.charAt(0))+  Character.getNumericValue(coordinates.charAt(1)) %2 == 0 ;
     }
 }
+
+
+
+//One liner
+class Solution {
+   public boolean squareIsWhite(String a) {
+        return (int)a.charAt(0) % 2 != (int)a.charAt(1) % 2;
+    }
+}
+
