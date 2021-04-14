@@ -24,9 +24,12 @@ class Solution {
          if(coordinates.charAt(0)=='h'){
             sb.append("8");
         }   
-       return Character.getNumericValue(coordinates.charAt(0))+  Character.getNumericValue(coordinates.charAt(1)) %2 == 0 ;
+        
+       int value =  Character.getNumericValue(coordinates.charAt(0))+  Character.getNumericValue(coordinates.charAt(1));
+       return value%2 == 0 ;
     }
 }
+
 
 
 
