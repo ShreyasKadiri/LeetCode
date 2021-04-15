@@ -28,3 +28,21 @@ class Solution {
     return b;
     }
 }
+
+
+
+//Caching with 1D array
+class Solution {
+    public int fib(int n) {
+        int dp[] = new int[31];
+        if(n <=1){
+            return n;
+        }
+        else if(dp[n]!=0){
+            return dp[n];
+        }
+        dp[n] = dp[n-1] + dp[n-2];
+        
+        return dp[n];
+    }
+}
