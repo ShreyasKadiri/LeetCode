@@ -41,8 +41,7 @@ class Solution {
         else if(dp[n]!=0){
             return dp[n];
         }
-        dp[n] = dp[n-1] + dp[n-2];
-        
+        dp[n] = fib(n-1) + fib(n-2);
         return dp[n];
     }
 }
