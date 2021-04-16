@@ -14,5 +14,5 @@ class Solution {
             if (minSet.contains(mx))
                 maxSet.add(mx);
         }
-      return ;
+       return new ArrayList<>(maxSet);  
 }
