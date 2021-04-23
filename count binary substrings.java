@@ -3,7 +3,7 @@ class Solution {
         int count = 0;
         int values[] = new int[2];
         for(int i=0; i<s.length(); i++){
-            for(int j=0; j<s.length(); j++){
+            for(int j=1+i; j<=s.length(); j++){
                 String currentString = s.substring(i,j);
                 values = countZeroesOnes(currentString);
                 if(values[0] == values[1]){
