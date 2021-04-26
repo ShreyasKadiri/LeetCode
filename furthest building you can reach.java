@@ -1,21 +1,22 @@
 class Solution {
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
-    PriorityQueue<Integer> lad = new PriorityQueue<>();
-    int cur = Integer.MAX_VALUE;
-    int usedBricks = 0;
-    for (int i = 0; i < heights.length; i++) {
-        int next = heights[i];
-        if (next <= cur) {
-            cur = next;
+    PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
+    int current = Integer.MAX_VALUE;
+    int totalBricks = 0;
+        
+    for (int i=0; i<heights.length; i++) {
+        int nextBuilding = heights[i];
+        if (nextBuilding <= currentBuilding) {
+            currentBuilding = nextBuilding;
             continue;
         }
-        int dif = next - cur;
-        cur = next;
-        lad.offer(dif);
-        if (lad.size() > ladders) {
-            Integer candidate = lad.poll();
-            usedBricks += candidate;
-            if (usedBricks > bricks) {
+        int difference = nextBuilding - currentBuilding;
+        currentBuilding = nextBuilding;
+        heap.offer(difference);
+        if (heap.size() > ladders) {
+            int popped = heap.poll();
+            totalBricks += popped;
+            if (totalBricks > bricks) {
                 return i - 1;
             }
         }
