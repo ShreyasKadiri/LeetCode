@@ -1,7 +1,7 @@
 class Solution {
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
     PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
-    int current = Integer.MAX_VALUE;
+    int currentBuilding = Integer.MAX_VALUE;
     int totalBricks = 0;
         
     for (int i=0; i<heights.length; i++) {
