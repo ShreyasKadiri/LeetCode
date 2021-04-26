@@ -1,27 +1,27 @@
-public String sortString(String s) {
-        int len = s.length();
-        int[] freq = new int[26];
-        for (int index = 0; index < len; index++) {
-            freq[s.charAt(index) - 'a']++;
+class Solution {
+    public String sortString(String s) {
+        int[] frequency = new int[26];
+        for (int i=0; i<s.length(); i++) {
+            frequency[s.charAt(i) - 'a']++;
         }
-        StringBuilder sb = new StringBuilder(len);
+        StringBuilder result = new StringBuilder(s.length());
         int count = 0;
-        while (count < len) {
-            for (int i = 0; i < 26; i++) {
-                if (freq[i] > 0) {
-                    sb.append((char) (i + 'a'));
-                    freq[i] = freq[i] - 1;
+        while (count < s.length()) {
+            for (int i=0; i<26; i++) {
+                if (frequency[i] > 0) {
+                    result.append((char) (i + 'a'));
+                    frequency[i] = frequency[i] - 1;
                     count++;
                 }
             }
-            // sorting down
-            for (int i = 25; i >= 0; i--) {
-                if (freq[i] > 0) {
-                    sb.append((char) (i + 'a'));
-                    freq[i] = freq[i] - 1;
+            for (int i=25; i>=0; i--) {
+                if (frequency[i] > 0) {
+                    result.append((char) (i + 'a'));
+                    frequency[i] = frequency[i] - 1;
                     count++;
                 }
             }
         }
-        return sb.toString();
+        return result.toString();
     }
+}
