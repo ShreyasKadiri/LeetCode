@@ -29,3 +29,11 @@ class Solution {
             return n>0 && 1162261467%n == 0;
     }
 }
+
+
+//Time complexity: O(log(n)) space complexity: O(log(n))
+class Solution {
+    public boolean isPowerOfThree(int n) {
+        return Integer.toString(n, 3).matches("^10*$");
+    }
+}
