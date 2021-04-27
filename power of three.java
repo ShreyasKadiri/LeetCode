@@ -37,3 +37,16 @@ class Solution {
         return Integer.toString(n, 3).matches("^10*$");
     }
 }
+
+
+class Solution {
+    public boolean isPowerOfThree(int n) {
+        if (n==0){
+            return false;
+        } 
+        while (n%9 == 0){
+            n/=9;
+        }
+        return (n==1 || n==3);
+    }
+}
