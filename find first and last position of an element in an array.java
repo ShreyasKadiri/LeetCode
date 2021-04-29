@@ -19,12 +19,12 @@ class Solution {
 //Binary Search : O(nlogn)
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        firstIndex(nums, target);
-        lastIndex(nums, target);
+        int firstIndex = getFirstIndex(nums, target);
+        int lastIndex = getLastIndex(nums, target);
         return new int[]{firstIndex, lastIndex};
     }
     
-    public int firstIndex(int nums[], int target){
+    public int getFirstIndex(int nums[], int target){
         int firstIndex = -1;
         int low = 0;
         int high = nums.length-1;
@@ -43,7 +43,7 @@ class Solution {
         return firstIndex;
     }
     
-    public int lastIndex(int nums[], int target){
+    public int getLastIndex(int nums[], int target){
         int lastIndex = -1;
         int low =0;
         int high = nums.length-1;
@@ -57,9 +57,9 @@ class Solution {
                 low = mid+1;
             }
         else{
-            end = mid-1;
+            high = mid-1;
+          }
         }
-    }
         return lastIndex;
-    }
-}
+      }
+  }
