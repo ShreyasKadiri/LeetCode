@@ -16,7 +16,7 @@ class Solution {
 }
 
 
-//Binary Search : O(nlogn)
+//Binary Search : O(logn)
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         int firstIndex = getFirstIndex(nums, target);
