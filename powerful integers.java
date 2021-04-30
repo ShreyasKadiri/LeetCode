@@ -24,7 +24,7 @@ class Solution {
         int Y = (int) (y == 1 ? 0 : Math.log(bound) / Math.log(y));
         for(int i=0; i<=X; i++) {
             for(int j=0; j<=Y; j++) {
-                int value = (int) (Math.pow(x, i)) + Math.pow(y, j);
+                int value = (int) (Math.pow(x, i) + Math.pow(y, j));
                 if(value <= bound){
                     set.add(value);
                 }
