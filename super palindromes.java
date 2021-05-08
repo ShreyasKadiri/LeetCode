@@ -4,10 +4,8 @@ class Solution {
         int low = Integer.parseInt(left);
         int high = Integer.parseInt(right);
         for(int i=low; i<=high; i++){
-            if(checkPalindrome(i)){
-                if(checkPalindrome(Math.sqrt(i))){
+            if(checkPalindrome(i) && checkPalindrome(Math.sqrt(i))){
                     count++;
-                }
             }
         }
         return count;
