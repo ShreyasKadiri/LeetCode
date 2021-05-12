@@ -9,3 +9,18 @@ class Solution {
         return set.size();
     }
 }
+
+
+//2nd
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+    HashSet<String> set = new HashSet<String>();
+        for (String email : emails) {
+            String split[] = email.split("@");
+            String localName = split[0].replace(".", "");
+            int i = localName.indexOf('+');
+            set.add(localName.substring(0,i) + "@" + split[1]);
+        }
+        return set.size();
+    }
+}
