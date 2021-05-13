@@ -2,7 +2,7 @@ class Solution {
     public List<String> ambiguousCoordinates(String s) {
         String string = s.substring(1, s.length() - 1);
         ArrayList<String> result = new ArrayList<String>();
-        for (int i=1; i<s.length(); i++) {
+        for (int i=1; i<string.length(); i++) {
             List<String> first = findValidCombinations(string.substring(0, i));
             List<String> second = findValidCombinations(string.substring(i));
             for (String firstString : first) {
