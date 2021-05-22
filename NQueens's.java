@@ -3,8 +3,8 @@ class Solution {
         List<List<String>> result = new ArrayList<>();
         char[][] board = new char[n][n];
         initializeBoard(board);
-        backTrack(board, res, 0);
-        return res;
+        backTrack(board, result, 0);
+        return result;
     }
     
     private void initializeBoard(char[][] board) {
@@ -22,10 +22,10 @@ class Solution {
             }
             result.add(sb.toString());
         }
-        return list;
+        return result;
     }
     
-    private void backTrack(char[][] board, List<List<String>> res, int index) {
+    private void backTrack(char[][] board, List<List<String>> result, int index) {
         if (index == board.length) {
             result.add(generate(board));
             return;
@@ -33,7 +33,7 @@ class Solution {
         
         for (int i=0; i<board.length; i++) {
             if (isValid(board, index, i)) {
-                board[rowIndex][i] = 'Q';
+                board[index][i] = 'Q';
                 backTrack(board, result, index+1);
                 board[index][i] = '.';
             }
@@ -41,7 +41,7 @@ class Solution {
     }
     
     private boolean isValid(char[][] board, int x, int y) {
-        for (int i=rowIndex-1; i>=0; i--) {
+        for (int i=x-1; i>=0; i--) {
             if (board[i][y] == 'Q') {
                 return false;
             }
