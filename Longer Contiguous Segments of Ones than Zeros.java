@@ -1,33 +1,14 @@
-class Solution {
-    public boolean checkZeroOnes(String s) { 
-        return longestSegmentOnes(s) > longestSegmentZeroes(s);
-    }
-    
-    public int longestSegmentOnes(String s){
-        int maximum = Integer.MIN_VALUE;
-        int currentLength = 0;
-        for(char c : s.toCharArray()){
-            if(c == '1'){
-                currentLength+=1;
+class Solution{
+    public boolean checkZeroOnes(String s) {
+        int longestZeros = 0, longestOnes = 0, currentZeros = 0, currentOnes = 0;
+        for(int i=0;i<s.length();i++) 
+            if(s.charAt(i) == '0') {
+                longestZeros = Math.max(longestZeros, ++currentZeros);
+                currentOnes = 0;
             }else {
-                maximum = Math.max(currentLength, maximum);
-                currentLength = 0;
+                longestOnes = Math.max(longestOnes, ++currentOnes);
+                currentZeros = 0;
             }
-        }
-        return maximum;
-    }
-    
-    public int longestSegmentZeroes(String s){
-        int maximum = Integer.MIN_VALUE;
-        int currentLength = 0;
-        for(char c : s.toCharArray()){
-            if(c == '0'){
-                currentLength+=1;
-            }else {
-                maximum = Math.max(currentLength, maximum);
-                currentLength = 0;
-            }
-        }
-        return maximum;
+        return longestOnes > longestZeros;
     }
 }
