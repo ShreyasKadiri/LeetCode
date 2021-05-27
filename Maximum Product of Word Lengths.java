@@ -31,3 +31,30 @@ class Solution {
         return false;
     }
 }
+
+//Efficient Approach
+class Solution {
+    public int maxProduct(String[] words) {
+        int flag[] = new int[words.length];
+        int maximumProduct = 0;
+        int k = 0;
+        for(String word : words){
+            int integerRepresentation = 0;
+            for(int j=0; j<word.length(); j++){
+                int x = word.charAt(j) - 'a';
+                integerRepresentation = integerRepresentation | 1<<x;
+            }
+            flag[k++] = integerRepresentation;
+        }
+        
+        for(int i=0; i<words.length; i++){
+            for(int j=0; j<words.length; j++){
+                if((flag[i]&flag[j]) == 0){
+                    maximumProduct = Math.max(maximumProduct, words[i].length() * words[j].length());
+                }
+            }
+        }
+        return maximumProduct;
+    }
+}
+
