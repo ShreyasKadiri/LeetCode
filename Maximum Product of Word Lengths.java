@@ -1,3 +1,4 @@
+//Brute Force : o(n3)
 class Solution {
     public int maxProduct(String[] words) {
         int maximumProduct = 0;
@@ -32,7 +33,9 @@ class Solution {
     }
 }
 
-//Efficient Approach
+
+
+//Efficient Approach TC : o(n2)
 class Solution {
     public int maxProduct(String[] words) {
         int flag[] = new int[words.length];
