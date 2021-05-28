@@ -21,3 +21,34 @@ class Solution {
         return result;
     }
 }
+
+
+//2nd similar approach
+class Solution {
+    public int maximumUniqueSubarray(int[] nums) {
+        int score = 0;
+        HashMap<Integer, Intger> map = new HashMap<Integer, Intger>();
+        int left = 0;
+        int right = 0;
+        int maximumScore = Integer.MIN_VALUE;
+        while(right < nums.length){
+            if(!map.containsKey(nums[right])){
+                score+= nums[right];
+                map.put(nums[right], right);
+            }else {
+                int index = map.get(nums[right]);
+                while(left <= index){
+                    map.remove(nums[left]);
+                    score-= nums[right];
+                    left++;
+                }
+                score+= nums[right];
+                map.put(nums[right], right);
+            }
+            maximumScore = Math.max(maximumScore, score);
+            right++;
+        }
+        
+        return sum;
+    }
+}
