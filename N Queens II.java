@@ -15,7 +15,7 @@ class Solution {
             boolean isDiagonalSafe = ((1 << (n-1+row-i)) & diagonal) == 0;
             boolean isAntiDiagonalSafe = ((1 << (row + i)) & antiDiagonal) == 0;
             if (isColumnSafe && isDiagonalSafe && isAntiDiagonalSafe){
-                dfs(row+1, n, (1 << i) | column, (1 << (n - 1 + row - i)) | diag, (1 << (row + i)) | antiDiagonal);
+                dfs(row+1, n, (1 << i) | column, (1 << (n - 1 + row - i)) | diagonal, (1 << (row + i)) | antiDiagonal);
             }
         }
     }
