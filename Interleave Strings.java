@@ -25,7 +25,7 @@ class Solution {
 class Solution {
     public boolean isInterleave(String s1, String s2, String s3){
         int dp[][] = new int[s1.length()+1][s2.length()+1];
-        return solveStrings(s1,s2,s3,0,cache, 0, 0);
+        return solveStrings(s1, s2, s3, 0, dp, 0, 0);
     }
     
     public boolean solveStrings(String s1, String s2, String s3, int currentPosition, int dp[][], int i, int j){
@@ -50,15 +50,15 @@ class Solution {
         
         if(i<s1.length()){
           if(s1.charAt(i) ==  s3.charAt(currentPosition)){
-              flag1 =  solveForStrings(i+1, j, currentPosition+1, s1, s2, s3, dp);
+              flag1 =  solveStrings(i+1, j, currentPosition+1, s1, s2, s3, dp);
           }
         }
         if (j<s2.length()){
           if (s2.charAt(l2) == s3.charAt(currentPosition)){
-              flag2=  helper(l1, l2 +1 , position + 1, s1, s2, s3, dp);
+              flag2=  solveStrings(i, j+1 , currentPosition+1, s1, s2, s3, dp);
           }
         }
-        dp[l1][l2] = (res1 || res2) == true ? 1 : -1;
-        return res1 || res2;
+        dp[i][j] = (flag1 || flag2) == true ? 1 : -1;
+        return flag1 || flag2;
     }
 }
