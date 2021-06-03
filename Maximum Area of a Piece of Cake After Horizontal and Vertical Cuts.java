@@ -1,18 +1,21 @@
 class Solution {
     public int maxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts) {
-        Arrays.sort(horizontalCuts);
-        Arrays.sort(verticalCuts);
+        long horizontalMaximumDifferenceCut = getMaximumDifferenceCuts(horizontalCuts,h);
+        long verticalMaximumDifferenceCut = getMaximumDifferenceCuts(verticalCuts,w);
+        return (int)((horizontalMaximumDifferenceCut * verticalMaximumDifferenceCut)%1000000007);
+    }  
+    
+    public long getMaximumDifferenceCuts(int[] dimensions, int cutDimension) {
+        Arrays.sort(dimensions);
+        int maximumDifference = 0;
+        int startingDimension = 0;
         
-        int maximumHorizontalDifference = 0;
-        for(int i=1; i<horizontalCuts.length; i++){
-            maximumHorizontalDifference = Math.max(maximumHorizontalDifference, (horizontalCuts[i] - horizontalCuts[i-1]));
+        for(int i=0; i<dimensions.length; i++){
+            maximumDifference = Math.max(dimensions[i]-startingDimension,maximumDifference);
+            startingDimension = dimensions[i];
         }
         
-         int maximumVerticalDifference = 0;
-        for(int i=1; i<verticalCuts.length; i++){
-            maximumVerticalDifference = Math.max(maximumVerticalDifference, (verticalCuts[i] - verticalCuts[i-1]));
-        }
-        
-        return maximumHorizontalDifference*maximumVerticalDifference;
+        maximumDifference = Math.max(maximumDifference,cutDimension-startingDimension);
+        return maximumDifference;
     }
 }
