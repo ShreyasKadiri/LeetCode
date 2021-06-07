@@ -38,3 +38,22 @@ class Solution {
         return result;
     }
 }
+
+
+//Using prefix sum
+//Prefix Sum
+class Solution {
+    public int sumOddLengthSubarrays(int[] arr) {
+        int result = 0;
+        int[] prefixSum = new int[arr.length+1];
+        for (int i=0; i<arr.length; i++) {
+            prefixSum[i+1] = prefixSum[i] + arr[i];
+        }
+        for (int i=0; i<arr.length; i++){
+            for (int j=i+1; j <=arr.length; j+=2) {
+                result+= prefixSum[j] - prefixSum[i];
+            }
+        }
+        return result;        
+    }
+}
