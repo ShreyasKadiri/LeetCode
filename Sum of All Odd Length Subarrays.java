@@ -1,3 +1,4 @@
+//Time Complexity o(n3)
 class Solution {
     public int sumOddLengthSubarrays(int[] arr) {
         int totalSum = 0;
@@ -17,5 +18,23 @@ class Solution {
             sum+=arr[x];
         }
         return sum;
+    }
+}
+
+//Time Complexity o(n2)
+//Prefix Sum
+class Solution {
+    public int sumOddLengthSubarrays(int[] arr) {
+        int result = 0;
+        for (int i=0; i<arr.length; i++){
+            int currentSum = 0;
+            for (int j=i; j<arr.length; j++){
+                currentSum += arr[j];
+                if ((j-i+1) % 2 == 1){
+                    result += currentSum;
+                }
+            }
+        }
+        return result;
     }
 }
