@@ -14,23 +14,21 @@
  * }
  */
 class Solution {
-    public int sumRootToLeaf(TreeNode root) {
+    public int sumRootToLeaf(TreeNode root){
         return dfs(root, 0);
     }
-    
-    private int dfs(TreeNode root, int value){
-        if(root == null){
+
+	public int dfs(TreeNode root, int val){
+        int totalSum = 0;
+		if(root == null){
             return 0;
         }
-            int totalSum = 0;
-        value = value << 1 | root.val;
-        //Single path
-        while(root.left==null && root.right==null){
-            return root.val;
+        val = val << 1 | root.val;
+		if(root.left == null && root.right == null){
+            return val;
         }
-        totalSum+= dfs(root.left, value);
-        totalSum+= dfs(root.right, value);
-        
-        return totalSum;
+        totalSum += dfs(root.left, val);
+		totalSum += dfs(root.right, val);
+		return totalSum;
     }
 }
