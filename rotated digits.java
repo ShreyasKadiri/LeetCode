@@ -1,5 +1,5 @@
 class Solution {
-    public int RotatedDigits(int n){
+    public int rotatedDigits(int n){
         // dp[i] = 0, invalid number
         // dp[i] = 1, valid and same number
         // dp[i] = 2, valid and different number
