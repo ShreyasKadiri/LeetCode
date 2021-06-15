@@ -1,3 +1,13 @@
+/*
+Steps:
+1. Go to the kth level and retrieve all the friends 
+2. For each friend, get the videos watched 
+3. Aggregate the counts
+4. Sort them 
+5. Return the values
+
+*/
+
 class Solution {
     public List<String> watchedVideosByFriends(List<List<String>> watchedVideos, int[][] friends, int id, int level) {
         Queue<Integer> queue = new LinkedList<Integer>();
