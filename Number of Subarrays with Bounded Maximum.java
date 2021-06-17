@@ -1,3 +1,4 @@
+//TLE  38/43 test cases passed
 class Solution {
     public int numSubarrayBoundedMax(int[] nums, int left, int right) {
         int count = 0;
@@ -19,3 +20,26 @@ class Solution {
         return maximum>=left && maximum<=right;
     }
 }
+
+//Efficient
+class Solution {
+    public int numSubarrayBoundedMax(int[] nums, int left, int right) {
+        int count = 0;
+        int i = 0;
+        int j = 0;
+        int windowSize = 0; 
+        
+        while(j < nums.length){
+            if(nums[j]>=left && nums[j]<=right){
+                windowSize = j - i + 1; 
+            }else if(nums[j] > right){
+                windowSize = 0;
+                i = j + 1;
+            }
+            count+= windowSize;
+            j++;
+        }
+        return count;
+    }
+}
+
