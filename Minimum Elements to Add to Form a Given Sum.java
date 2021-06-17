@@ -1,10 +1,11 @@
 class Solution {
-    public int minElements(int[] A, int limit, int goal) {
-        int sum = 0;
-        for(int i=0; i<A.length; i++){
-            sum+= A[i];
+    public int minElements(int[] nums, int limit, int goal) {
+        long sum = 0;
+        for (int i=0; i<nums.length; i++) {
+            sum += nums[i];
         }
-        return (int)((Math.abs(goal - sum) + limit - 1) / limit);
+        long delta = (long)goal - sum;
+        return (int)((Math.abs(delta) + limit - 1) / limit);
     }
 }
     
