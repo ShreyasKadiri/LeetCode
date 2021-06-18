@@ -1,27 +1,26 @@
-class NumArray {
-    
-    class SegmentTreeNode{
-        private int start = 0;
-        private int end= 0;
-        private int sum = 0;
-        SegmentTreeNode left, right;
-        
-        public SegmentTreeNode(int start, int end){
+public class NumArray {
+
+    class SegmentTreeNode {
+        private int start, end;
+        private  SegmentTreeNode left, right;
+        private  int sum;
+
+        public SegmentTreeNode(int start, int end) {
             this.start = start;
             this.end = end;
-            this.sum = 0;
             this.left = null;
             this.right = null;
+            this.sum = 0;
         }
-        
-        SegmentTreeNode root = null;
     }
-    
+
+    SegmentTreeNode root = null;
+
     public NumArray(int[] nums) {
-         root = constructSegmentTree(nums, 0, nums.length-1);
+        root = constructSegmentTree(nums, 0, nums.length-1);
     }
     
-    private SegmentTreeNode constructSegmentTree(int nums[], int start, int end){
+    public SegmentTreeNode constructSegmentTree(int nums[], int start, int end){
         if(start > end){
             return null;
         }else {
@@ -38,16 +37,19 @@ class NumArray {
         }
     }
     
+     void update(int i, int val) {
+        updateValuesHelper(root, i, val);
+    }
     
     private void updateValuesHelper(SegmentTreeNode root, int position, int val){
         if (root.start == root.end) {
             root.sum = val;
         } else {
             int mid = root.start + (root.end - root.start) / 2;
-            if (pos <= mid) {
-                updateValuesHelper(root.left, pos, val);
+            if (position <= mid) {
+                updateValuesHelper(root.left, position, val);
             } else {
-                updateValuesHelper(root.right, pos, val);
+                updateValuesHelper(root.right, position, val);
             }
             root.sum = root.left.sum + root.right.sum;
         }
@@ -55,7 +57,7 @@ class NumArray {
     
     
     public int sumRange(int left, int right) {
-        return sumRangeHelper(root, i, j);
+        return sumRangeHelper(root, left, right);
     }
     
     public int sumRangeHelper(SegmentTreeNode root, int start, int end) {
