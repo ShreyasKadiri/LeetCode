@@ -14,23 +14,26 @@
  * }
  */
 class Solution {
-     List<Integer> inOrderTraversal = new ArrayList<Integer>();
     public int rangeSumBST(TreeNode root, int low, int high) {
-        inOrder(root);
+        if(root == null){
+            return 0;
+        }
         int sum = 0;
-        for(int nodeValue : inOrderTraversal){
-            if(nodeValue>=low && nodeValue<=high){
-                sum+= nodeValue;
+        
+        while(root!=null){
+            if(root.left!=null){
+                if(root.val>=low && root.val<=high){
+                    sum+= root.val;
+                    root = root.left;
+                }
+            }
+            if(root.right!=null){
+                if(root.val>=low && root.val<=high){
+                    sum+= root.val;
+                    root = root.right;
+                }
             }
         }
         return sum;
-    }
-    
-    private void inOrder(TreeNode root){
-        while(root!=null){
-            inOrder(root.left);
-            inOrderTraversal.add(root.val);
-            inOrder(root.right);
-        }
     }
 }
