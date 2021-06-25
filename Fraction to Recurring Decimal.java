@@ -27,7 +27,7 @@ class Solution {
             }
             map.put(remainder, sb.length());
             remainder*= 10;
-            sb.append(divisor / dividend);
+            sb.append(remainder/dividend);
             remainder%= dividend;
         }
         return sb.toString();
