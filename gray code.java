@@ -18,3 +18,18 @@ class Solution {
         return result;
     }
 }
+
+
+//Linear Approach
+class Solution {
+    public List<Integer> grayCode(int n) {
+        List<Integer> result = new ArrayList<>();
+        // there are 2 ^ n numbers in the Gray code sequence.
+        int totalLength = 1 << n;
+        for (int i=0; i<totalLength; i++) {
+            int value = i ^ i >> 1;
+            result.add(value);
+        }
+        return result;
+    }
+}
