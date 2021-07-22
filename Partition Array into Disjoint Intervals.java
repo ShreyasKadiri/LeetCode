@@ -26,3 +26,21 @@ class Solution {
         return -1;
     }
 }
+
+
+
+class Solution {
+    public int partitionDisjoint(int[] nums) {
+        int maximumUntilCurrent = nums[0];
+        int maximumInLeftPartition = nums[0];
+        int partitionIndex = 0;
+        for (int i=1; i<nums.length; i++) {
+            maximumUntilCurrent = Math.max(maximumUntilCurrent, nums[i]);
+            if (nums[i] < maximumInLeftPartition) {
+                maximumInLeftPartition = maximumUntilCurrent;
+                partitionIndex = i;
+            }
+        }
+        return partitionIndex + 1;
+    }
+}
