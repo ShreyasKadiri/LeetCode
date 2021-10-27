@@ -1,3 +1,4 @@
+
 class Solution {
     public int bagOfTokensScore(int[] tokens, int P) {
         Arrays.sort(tokens);
@@ -20,3 +21,5 @@ class Solution {
         return maxPoints;
     }
 }
+
+
