@@ -1,5 +1,8 @@
 public class Solution{
     public int maximalRectangle(char[][] matrix) {
+        if(matrix.length == 0 || matrix == null){
+            return 0;
+        }
         int[][] grid = new int[matrix.length][matrix[0].length];
         buildHistogram(matrix, grid);
         int maximum = 0;
