@@ -22,3 +22,19 @@ class Solution {
         return Integer.parseInt(result,2);
     }
 }
+
+
+//Bitwise
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        if(head == null){
+            return -1;
+        }
+        int sum = 0;
+        while(head!=null){
+            sum = sum*2 + head.val;
+            head= head.next;
+        }
+        return sum;
+    }
+}
