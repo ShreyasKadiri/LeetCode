@@ -12,3 +12,31 @@ class Solution{
         return -1;
     }
 }
+
+//Moore's voting algorithm
+class Solution{
+    public int majorityElement(int[] nums) {
+        int candidate = -1;
+        int count = 0;
+        for(int i=0; i<nums.length; i++){
+            if(count == 0){
+                candidate = nums[i];
+                count = 1;
+            }else {
+                if(nums[i] == candidate){
+                    count++;
+                }else {
+                    count--;
+                }
+            }
+        }
+        
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] == candidate){
+                count++;
+            }
+        }
+        
+        return count >= nums.length/2 ? candidate : -1;
+    }
+}
